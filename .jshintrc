@@ -1,0 +1,12 @@
+//I don't currently have JSHint installed but this tells that linter to ignore these
+//things and not error out on them
+
+{
+  "globals" : {
+    "window" : true,
+    "ToeFu" : true,
+    "Phaser" : true
+  },
+  "undef" : true,
+  "unused" : true
+}
