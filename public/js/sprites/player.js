@@ -8,6 +8,13 @@ var ANIMATIONS = {
     fps : 5
   }
 };
+
+ var FACING_FACTOR = {
+    LEFT : -1,
+    RIGHT : 1
+  };
+
+
 //sprite class constructor
 //@id is  0 index based
   ToeFu.Player = function ( game, id, name) {
@@ -15,6 +22,7 @@ var ANIMATIONS = {
     this.id = id;
     //? means if name is not defined then assign 'Player '
     this.name = name? name : 'Player ' + (id + 1);
+    this.facing //direction that player is facing
 
     //super constructor call
     Phaser.Sprite.call(this, game, 0, 0, ToeFu.ASSETS.SPRITESHEET.PLAYER.name);
@@ -33,5 +41,20 @@ var ANIMATIONS = {
       value : ToeFu.Player
     }
   });
+
+  //pulbic static variable
+  ToeFu.Player.FACING = {
+    LEFT : 'LEFT',
+    RIGHT : 'RIGHT'
+  };
+
+
+  //this is invoked on every frame 60fps
+  ToeFu.Player.prototype.update = function() {
+
+    //update facing direction
+    this.scale.x = FACING_FACTOR[ this. facing ];
+
+  };
 
 })();
