@@ -14,6 +14,11 @@ var ANIMATIONS = {
     RIGHT : 1
   };
 
+  function select_sprite_row(player_id) {
+    return function(frame_id) {
+      return frame_id + player_id*ToeFu.ASSETS.SPRITESHEET.PLAYER.frames_per_row;
+    };
+  }
 
 //sprite class constructor
 //@id is  0 index based
@@ -27,8 +32,21 @@ var ANIMATIONS = {
     //super constructor call
     Phaser.Sprite.call(this, game, 0, 0, ToeFu.ASSETS.SPRITESHEET.PLAYER.name);
 
-    //set animations
-    this.animations.add(ANIMATIONS.IDLE.name, ANIMATIONS.IDLE.frames );
+    //set center registration point (where sprites are centered at)
+    this.anchor = { x: 0.5, y : 0.5 };
+
+    // set animations could do it this way:
+    // if(this.id === 0){
+    //   this.animations.add(ANIMATIONS.IDLE.name, ANIMATIONS.IDLE.frames );
+    // } else {
+    //   var frames = ANIMATIONS.IDLE.frames;
+    //   for (var i = 0, len = frames.length; i < len; i++) {
+    //     frames[i] = frames[i] + ToeFu.ASSETS.SPRITESHEET.PLAYER.frames_per_row;
+    //   }
+    //   this.animations.add(ANIMATIONS.IDLE.name, frames );
+    // }
+
+    this.animations.add(ANIMATIONS.IDLE.name, ANIMATIONS.IDLE.frames.map(select_sprite_row(this.id)));
 
     //play the initial animation
     this.animations.play(ANIMATIONS.IDLE.name, ANIMATIONS.IDLE.fps, true);
