@@ -32,6 +32,9 @@ var ANIMATIONS = {
     //super constructor call
     Phaser.Sprite.call(this, game, 0, 0, ToeFu.ASSETS.SPRITESHEET.PLAYER.name);
 
+    // enable physics (adds this.body)
+    this.game.physics.enable(this, Phaser.Physics.ARCADE);
+
     //set center registration point (where sprites are centered at)
     this.anchor = { x: 0.5, y : 0.5 };
 
@@ -74,5 +77,34 @@ var ANIMATIONS = {
     this.scale.x = FACING_FACTOR[ this. facing ];
 
   };
+
+  //Input actions
+
+  ToeFu.Player.prototype.jump = function () {
+
+  };
+
+  ToeFu.Player.prototype.dive = function () {
+
+  };
+
+  ToeFu.Player.prototype.dive_stop = function () {
+
+  };
+
+  ToeFu.Player.prototype.step_left = function () {
+
+  };
+
+  ToeFu.Player.prototype.step_right = function () {
+
+  };
+
+  // stop stepping lef or right
+  ToeFu.Player.prototype.stop = function() {
+
+  };
+
+
 
 })();
