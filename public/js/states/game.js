@@ -42,6 +42,8 @@
 
     this.match_state = MATCH.IN_PROGRESS;
 
+    this.game.add.tileSprite(0,0,ToeFu.ASSETS.IMAGE.BG.width,ToeFu.ASSETS.IMAGE.BG.height, ToeFu.ASSETS.IMAGE.BG.name);
+
     //instantiate player
     this.player_1 = new ToeFu.Player(this.game, 0 );
     this.player_2 = new ToeFu.Player(this.game, 1 );
@@ -123,7 +125,7 @@
   };
 
   ToeFu.Game.prototype.flash = function(message, cb){
-
+    console.log('FLASH');
     var text = this.game.add.text(0, 0, message, FLASH_MESSAGE_STYLE);
     text.x = this.game.world.centerX - text.width/2;
 
@@ -146,7 +148,9 @@
   };
   //input actions
   ToeFu.Game.prototype.continue = function() {
-
+      if(this.match_state === MATCH.RESOLVED){
+      this.state.start(ToeFu.STATES.BOOT);
+    }
   };
 
 })();
